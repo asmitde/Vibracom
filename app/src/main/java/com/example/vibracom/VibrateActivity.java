@@ -1,4 +1,4 @@
-package com.example.vibrator1;
+package com.example.vibracom;
 
 import android.os.Build;
 import android.os.VibrationEffect;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class VibrateActivity extends AppCompatActivity {
 
     Button button;
     Vibrator vibrator;
