@@ -26,7 +26,7 @@ public class VibrateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_vibrate);
 
         button = findViewById(R.id.button);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
