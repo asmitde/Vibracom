@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <title>Test_Vibrations</title>
-<script type="text/javascript" src="https://raw.githubusercontent.com/shantanubala/haptics.js/master/haptics.js"></script>
+<script type="text/javascript" src="haptics.js"></script>
 </head>
 
 <body>
@@ -21,8 +21,8 @@
     //Haptics.vibrate(200);
     var x = document.getElementById("myNumber").value;
     document.getElementById("demo").innerHTML = x;
-    //var mediumPWM = Haptics.createPatternPWM(30, 10);
-    //mediumPWM(500);
+    var mediumPWM = Haptics.createPatternPWM(30, 10);
+    mediumPWM(500);
   }
   // function myFunction() {
   //       var on = document.getElementById("myNumber").value;
