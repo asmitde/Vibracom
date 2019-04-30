@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     File log = new File(folder, "Vibracom_log.csv");
 
     FileOutputStream fileOutputStream = null;
+    String logstr = "";
 
 
     @Override
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER_UNCALIBRATED);
 
 
         Switch toggle = findViewById(R.id.toggleButton);
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent event) {
         Sensor mySensor = event.sensor;
 
-        if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+        if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER_UNCALIBRATED) {
             float x = event.values[0];
             float y = event.values[1];
             float z = event.values[2];
@@ -86,10 +87,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         float[] readings = {0, 0, 0};
         updateReadings(readings);
 
-        String logdata = String.format("%f,%f,%f",0,0,0);
+        String logdata = String.format("%f,%f,%f",0.0,0.0,0.0);
+        logstr += logdata;
+
+        writeDataToFile(log, logstr);
+    }
+
+    private void writeDataToFile(File log, String logstr) {
         try {
             fileOutputStream = new FileOutputStream(log);
-            fileOutputStream.write(logdata.getBytes());
+            fileOutputStream.write(logstr.getBytes());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -109,13 +116,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         float[] readings = {0, 0, 0};
         updateReadings(readings);
 
-        String logdata = String.format("%f,%f,%f",0,0,0);
-        try {
-            fileOutputStream = new FileOutputStream(log);
-            fileOutputStream.write(logdata.getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        logstr = "";
+        String logdata = String.format("%f,%f,%f\n",0.0,0.0,0.0);
+        logstr += logdata;
     }
 
     private void updateReadings(float[] readings) {
@@ -128,14 +131,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         view_Z.setText(String.valueOf(readings[2]));
 
 
-        String logdata = String.format("%f,%f,%f",readings[0], readings[1], readings[2]);
-
-        try {
-            fileOutputStream.write(logdata.getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            Toast.makeText(this, "Log written to file.", Toast.LENGTH_SHORT).show();
-        }
+        String logdata = String.format("%f,%f,%f\n",readings[0], readings[1], readings[2]);
+        logstr += logdata;
     }
 }
