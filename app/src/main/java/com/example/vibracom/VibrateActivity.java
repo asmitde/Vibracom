@@ -24,6 +24,9 @@ public class VibrateActivity extends AppCompatActivity {
     long[] mVibratePattern8 = new long[]{0,20,80,20,80,20,80,20,80,20,80,20,80,20,80,20};
     long[] mVibratePattern9 = new long[]{0,10,90,10,90,10,90,10,90,10,90,10,90,10,90,10};
 
+    long[] mVibratePattern10 = new long[]{0,3000,2000,3000,2000,3000,2000,3000,2000,3000,2000,3000,2000,3000,2000,3000,2000,3000,2000,3000,2000,3000,2000,3000,2000};
+
+
     int[] mAmplitudes = new int[]{0, 255, 0, 255, 0, 255, 0, 255,0, 255, 0, 255, 0, 255, 0, 255};
 
 
@@ -69,7 +72,7 @@ public class VibrateActivity extends AppCompatActivity {
                     VibrationEffect effect = VibrationEffect.createWaveform(mVibratePattern8, mAmplitudes, -1);
                     vibrator.vibrate(effect);}
                 else {
-                    VibrationEffect effect = VibrationEffect.createWaveform(mVibratePattern9, mAmplitudes, -1);
+                    VibrationEffect effect = VibrationEffect.createWaveform(mVibratePattern10, mAmplitudes, -1);
                     vibrator.vibrate(effect);
            }
            }
