@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             float y = event.values[1];
             float z = event.values[2];
 
-            float[] readings = {x, y, z};
+            long time = event.timestamp;
+
+            float[] readings = {time, x, y, z};
             updateReadings(readings);
 
         }
@@ -86,9 +88,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         float[] readings = {0, 0, 0};
         updateReadings(readings);
-
-        String logdata = String.format("%f,%f,%f",0.0,0.0,0.0);
-        logstr += logdata;
 
         writeDataToFile(log, logstr);
     }
@@ -113,12 +112,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private void startCapture() {
         sensorManager.registerListener(this, accel, SensorManager.SENSOR_STATUS_ACCURACY_HIGH);
 
-        float[] readings = {0, 0, 0};
-        updateReadings(readings);
-
         logstr = "";
-        String logdata = String.format("%f,%f,%f\n",0.0,0.0,0.0);
-        logstr += logdata;
+
     }
 
     private void updateReadings(float[] readings) {
@@ -131,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         view_Z.setText(String.valueOf(readings[2]));
 
 
-        String logdata = String.format("%f,%f,%f\n",readings[0], readings[1], readings[2]);
+        String logdata = String.format("%ld,%f,%f,%f\n",readings[0], readings[1], readings[2], readings[3]);
         logstr += logdata;
     }
 }
