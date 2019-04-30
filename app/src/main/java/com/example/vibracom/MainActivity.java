@@ -118,12 +118,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         TextView view_Y = findViewById(R.id.y_data);
         TextView view_Z = findViewById(R.id.z_data);
 
-        view_X.setText(String.valueOf(readings[0]));
-        view_Y.setText(String.valueOf(readings[1]));
-        view_Z.setText(String.valueOf(readings[2]));
+        view_X.setText(String.valueOf(readings[1]));
+        view_Y.setText(String.valueOf(readings[2]));
+        view_Z.setText(String.valueOf(readings[3]));
 
 
-        String logdata = String.format("%ld,%f,%f,%f\n",readings[0], readings[1], readings[2], readings[3]);
+        String logdata = String.format("%f,%f,%f,%f\n",readings[0], readings[1], readings[2], readings[3]);
         logstr += logdata;
     }
 }
