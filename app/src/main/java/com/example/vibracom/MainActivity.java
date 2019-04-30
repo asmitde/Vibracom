@@ -5,16 +5,27 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor accel;
+
+    File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+    File log = new File(folder, "Vibracom_log.csv");
+
+    FileOutputStream fileOutputStream = null;
 
 
     @Override
@@ -60,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             float[] readings = {x, y, z};
             updateReadings(readings);
+
         }
     }
 
@@ -70,6 +82,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private void stopCapture() {
         sensorManager.unregisterListener(this);
+
+        float[] readings = {0, 0, 0};
+        updateReadings(readings);
+
+        String logdata = String.format("%f,%f,%f",0,0,0);
+        try {
+            fileOutputStream = new FileOutputStream(log);
+            fileOutputStream.write(logdata.getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fileOutputStream != null) {
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     private void startCapture() {
@@ -77,6 +108,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         float[] readings = {0, 0, 0};
         updateReadings(readings);
+
+        String logdata = String.format("%f,%f,%f",0,0,0);
+        try {
+            fileOutputStream = new FileOutputStream(log);
+            fileOutputStream.write(logdata.getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateReadings(float[] readings) {
@@ -87,5 +126,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         view_X.setText(String.valueOf(readings[0]));
         view_Y.setText(String.valueOf(readings[1]));
         view_Z.setText(String.valueOf(readings[2]));
+
+
+        String logdata = String.format("%f,%f,%f",readings[0], readings[1], readings[2]);
+
+        try {
+            fileOutputStream.write(logdata.getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Toast.makeText(this, "Log written to file.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
