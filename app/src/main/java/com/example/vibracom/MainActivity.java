@@ -86,9 +86,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private void stopCapture() {
         sensorManager.unregisterListener(this);
 
-        float[] readings = {0, 0, 0};
-        updateReadings(readings);
-
         writeDataToFile(log, logstr);
     }
 
