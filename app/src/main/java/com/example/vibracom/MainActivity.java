@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     private void startCapture() {
-        sensorManager.registerListener(this, accel, SensorManager.SENSOR_STATUS_ACCURACY_HIGH);
+        sensorManager.registerListener(this, accel, SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM);
 
         logstr = "";
 
