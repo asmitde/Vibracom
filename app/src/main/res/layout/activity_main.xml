@@ -6,49 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <Switch
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textOff="Start Capture"
-        android:textOn="Stop Capture"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
-
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Switch
+            android:id="@+id/captureAccel"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="25dp"
+            android:layout_marginTop="25dp"
+            android:text="Capture Accelerometer "
+            android:textOff="Start Capture"
+            android:textOn="Stop Capture" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_weight="2"
-                android:text="Accel_X" />
+                android:text="Accel_X"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/x_data"
@@ -61,16 +46,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_weight="2"
-                android:text="Accel_Y" />
+                android:text="Accel_Y"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/y_data"
@@ -83,16 +67,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_weight="2"
-                android:text="Accel_Z" />
+                android:text="Accel_Z"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/z_data"
@@ -101,6 +84,15 @@
                 android:layout_weight="1"
                 android:text="0" />
         </LinearLayout>
+
+        <Switch
+            android:id="@+id/recordVib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="Record Vibrations " />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
