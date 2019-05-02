@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>Test_Vibrations</title>
+  <script type="text/javascript" src="haptics.js"></script>
+  <style>
+    body {
+      background-color: whitesmoke;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin: 0;
+    }
+
+    .header {
+      background-color: maroon;
+      line-height: 5em;
+    }
+
+    .box {
+      margin: auto;
+      width: 500px;
+      padding: 25px;
+      align-content: center;
+      background-color: bisque;
+    }
+
+    input[type=number] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: rgb(84, 175, 76);
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-decoration: none;
+      margin: 20px auto;
+      width: 100%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1>VibraCom</h1>
+  </div>
+  <div class="box">
+    <p>Enter pulse width in seconds</p>
+    <input type="number" id="myPulse" value="3">
+    <p>Enter your 8 digit pattern</p>
+    <input type="number" id="myNumber" value="">
+    <button onclick="setTimeout(myFunction, 3000)">Send Vibration</button>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+  </div>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myNumber").value;
+      var y = document.getElementById("myPulse").value;
+      var vibtime = y * 1000;
+      var pause = y * 1000;
+      var digit = x.toString()[0];
+      var num_digit = x.toString().length;
+      document.getElementById("demo1").innerHTML = num_digit;
+      var time = 1;
+      var pattern = [];
+
+      for (var i = 1; i < num_digit; i++) {
+
+        if (digit != x.toString()[i]) {
+          digit = x.toString()[i];
+          if (digit == 0)
+            pattern.push(time * vibtime);
+          else
+            pattern.push(time * pause);
+          time = 1;
+        }
+        else {
+          time = time + 1;
+        }
+      }
+
+      if (x.toString()[num_digit - 1] == 1)
+        pattern.push(time * vibtime);
+      else
+        pattern.push(time * pause);
+
+
+      if (x.toString()[0] == 1) {
+        var pattern2 = [vibtime, pause];
+      }
+      else {
+        var pattern2 = [vibtime];
+        pattern[0] = pattern[0] + vibtime;
+      }
+      pattern2 = pattern2.concat(pattern);
+      document.getElementById("demo1").innerHTML = pattern2;
+      Haptics.vibrate(pattern2);//,4*vibtime,10*pause,vibtime,4*pause,vibtime,4*pause,vibtime,4*pause,vibtime,4*pause,vibtime,4*pause]);
+
+
+      document.getElementById("demo").innerHTML = x;
+
+    }
+
+  </script>
+</body>
+
+</html>
