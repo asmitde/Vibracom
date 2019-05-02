@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         recorder.setOutputFile(audiofile);
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
+
         try {
             recorder.prepare();
         } catch (IOException e) {

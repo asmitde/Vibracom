@@ -11,13 +11,28 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="VibraCom"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:background="@color/colorAccent"/>
+
         <Switch
             android:id="@+id/captureAccel"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_gravity="center"
+            android:padding="25dp"
+            android:background="#C2ECB5"
             android:layout_height="25dp"
             android:layout_marginTop="25dp"
             android:text="Capture Accelerometer "
+            android:textSize="15dp"
+            android:textColor="#000000"
             android:textOff="Start Capture"
             android:textOn="Stop Capture" />
 
@@ -85,13 +100,32 @@
                 android:text="0" />
         </LinearLayout>
 
-        <Switch
-            android:id="@+id/recordVib"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/accelimg"
+            android:layout_margin="50dp"
+            android:adjustViewBounds="true"
+            />
+
+        <Switch
+            android:id="@+id/recordVib"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:padding="25dp"
+            android:background="#C2ECB5"
+            android:layout_height="25dp"
+            android:layout_marginTop="25dp"
             android:text="Record Vibrations " />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/audioimg"
+            android:layout_margin="50dp"
+            android:adjustViewBounds="true"
+            />
 
     </LinearLayout>
 
